@@ -96,7 +96,7 @@ var _angularNotifyWhenFinished = function(callback){
 
 /**
  * Function that indicates wheater the document is in complete state.
- * @return {[type]} [description]
+ * @return {boolean} - returns false if document is not in "complete" state
  */
 var _docReadyPredicate = function() {
 		return browser.driver.executeScript(docReady)
@@ -107,7 +107,7 @@ var _docReadyPredicate = function() {
 
 /**
  * Function that indicates wheather the jQuery is present on page.
- * @return {[type]} [description]
+ * @return {boolean} -  returns false if there is no jQuery present
  */
 var _jQueryPredicate = function() {
 	  return browser.driver.executeScript(jQuery)
@@ -119,7 +119,7 @@ var _jQueryPredicate = function() {
 
 /**
  * Function that indicates wheather the angular is present on page.
- * @return {[type]} [description]
+ * @return {boolean} - returns false if there is no angular present
  */
 var _angularPredicate = function() {
 	  return browser.driver.executeScript(angular)
@@ -131,7 +131,7 @@ var _angularPredicate = function() {
 
 /**
  * Function that indicates wheather the jQuery ajax calls are pending
- * @return {[type]} [description]
+ * @return {boolean} - returns false if there are more then 0 jQuery ajax requests
  */
 var _pendingHttpCallsPredicate = function(){
     return browser.driver.executeScript(pendingHttp)
