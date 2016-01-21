@@ -18,6 +18,12 @@ var pendingHttp = function(){
   return $.active > 0;
 };
 
+
+/**
+ * Function that scans all "angular" nodes within the DOM.
+ * After it found all the nodes it will wait untill all pending requests on those nodes are done
+ * @param  {Function} callback - this callback will be executed once all pending http calls are finished
+ */
 var _angularNotifyWhenFinished = function(callback){
 	  function hasInjector(el) {
           return angular.element(el).injector() ? true : false;
@@ -87,6 +93,11 @@ var _angularNotifyWhenFinished = function(callback){
 
 };
 
+
+/**
+ * Function that indicates wheater the document is in complete state.
+ * @return {[type]} [description]
+ */
 var _docReadyPredicate = function() {
 		return browser.driver.executeScript(docReady)
 		  		 .then(function(result){
@@ -94,6 +105,10 @@ var _docReadyPredicate = function() {
 		  		 });
 };
 
+/**
+ * Function that indicates wheather the jQuery is present on page.
+ * @return {[type]} [description]
+ */
 var _jQueryPredicate = function() {
 	  return browser.driver.executeScript(jQuery)
 	  		 .then(function(result){
@@ -102,6 +117,10 @@ var _jQueryPredicate = function() {
 };
 
 
+/**
+ * Function that indicates wheather the angular is present on page.
+ * @return {[type]} [description]
+ */
 var _angularPredicate = function() {
 	  return browser.driver.executeScript(angular)
 	  		 .then(function(result){
@@ -109,6 +128,11 @@ var _angularPredicate = function() {
 	  		 });
 };
 
+
+/**
+ * Function that indicates wheather the jQuery ajax calls are pending
+ * @return {[type]} [description]
+ */
 var _pendingHttpCallsPredicate = function(){
     return browser.driver.executeScript(pendingHttp)
            .then(function(result){
